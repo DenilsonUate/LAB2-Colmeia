@@ -1,1 +1,88 @@
-#include <iostream>#include <string>#include <fstream>using namespace std;int main(){    cout << "Sistema de Pedidos do Restaurante" << endl;    cout << "Programa iniciado com sucesso!" << endl;    string pratos[15] = {        "Frango Grelhado","Arroz com Caril","Hamburguer","Pizza",        "Batatas Fritas","Sumo Natural","Refrigerante","Cafe",        "Bolo de Chocolate","Sandes de Frango"    };    float precos[15] = {        350,250,180,400,120,90,80,50,150,160    };    int pedidos_mesa[15] = {0};    int total_pratos = 10;    cout << "\n===== MENU =====" << endl;    for(int i = 0; i < total_pratos; i++)        cout << i+1 << " - " << pratos[i] << " : " << precos[i] << " MZN" << endl;    int opcao, quantidade;    while(true)    {        cout << "\nDigite numero do prato (0 para finalizar): ";        cin >> opcao;        if(opcao == 0)            break;        cout << "Quantidade: ";        cin >> quantidade;        pedidos_mesa[opcao-1] += quantidade;    }    float subtotal = 0;    for(int i = 0; i < total_pratos; i++)        subtotal += pedidos_mesa[i] * precos[i];    float iva = subtotal * 0.16;    float total = subtotal + iva;    cout << "\nSubtotal: " << subtotal << " MZN" << endl;    cout << "IVA (16%): " << iva << " MZN" << endl;    cout << "Total: " << total << " MZN" << endl;    ofstream conta("conta_mesa_1.txt");    conta << "===== CONTA DA MESA =====" << endl;    for(int i = 0; i < total_pratos; i++)    {        if(pedidos_mesa[i] > 0)        {            conta << pratos[i] << " x "                  << pedidos_mesa[i] << " = "                  << pedidos_mesa[i] * precos[i]                  << " MZN" << endl;        }    }    conta << "\nSubtotal: " << subtotal << " MZN" << endl;    conta << "IVA (16%): " << iva << " MZN" << endl;    conta << "Total: " << total << " MZN" << endl;    conta.close();    return 0;}
+#include <iostream>
+#include <string>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+    cout << "Sistema de Pedidos do Restaurante" << endl;
+    cout << "Programa iniciado com sucesso!" << endl;
+
+    string pratos[15] = {
+        "Frango Grelhado","Arroz com Caril","Hamburguer","Pizza",
+        "Batatas Fritas","Sumo Natural","Refrigerante","Cafe",
+        "Bolo de Chocolate","Sandes de Frango"
+    };
+
+    float precos[15] = {
+        350,250,180,400,120,90,80,50,150,160
+    };
+
+    int pedidos_mesa[15] = {0};
+    int total_pratos = 10;
+
+    cout << "\n===== MENU =====" << endl;
+
+    for(int i = 0; i < total_pratos; i++)
+        cout << i+1 << " - " << pratos[i] << " : " << precos[i] << " MZN" << endl;
+
+    int opcao, quantidade;
+
+    while(true)
+    {
+        cout << "\nDigite numero do prato (0 para finalizar): ";
+        cin >> opcao;
+
+        if(opcao == 0)
+            break;
+
+        if(opcao < 1 || opcao > total_pratos)
+        {
+            cout << "Prato invalido!" << endl;
+            continue;
+        }
+
+        cout << "Quantidade: ";
+        cin >> quantidade;
+
+        pedidos_mesa[opcao-1] += quantidade;
+    }
+
+    float subtotal = 0;
+
+    for(int i = 0; i < total_pratos; i++)
+        subtotal += pedidos_mesa[i] * precos[i];
+
+    float iva = subtotal * 0.16;
+    float total = subtotal + iva;
+
+    cout << "\nSubtotal: " << subtotal << " MZN" << endl;
+    cout << "IVA (16%): " << iva << " MZN" << endl;
+    cout << "Total: " << total << " MZN" << endl;
+
+    ofstream conta("conta_mesa_1.txt");
+
+    conta << "===== CONTA DA MESA =====" << endl;
+
+    for(int i = 0; i < total_pratos; i++)
+    {
+        if(pedidos_mesa[i] > 0)
+        {
+            conta << pratos[i] << " x "
+                  << pedidos_mesa[i] << " = "
+                  << pedidos_mesa[i] * precos[i]
+                  << " MZN" << endl;
+        }
+    }
+
+    conta << "\nSubtotal: " << subtotal << " MZN" << endl;
+    conta << "IVA (16%): " << iva << " MZN" << endl;
+    conta << "Total: " << total << " MZN" << endl;
+
+    conta.close();
+
+    cout << "\nConta gerada com sucesso no ficheiro conta_mesa_1.txt" << endl;
+
+    return 0;
+}
