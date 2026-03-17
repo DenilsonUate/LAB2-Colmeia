@@ -1,4 +1,4 @@
-#include <iostream>
+include <iostream>
 #include <string>
 
 using namespace std;
@@ -19,6 +19,7 @@ int main()
     };
 
     int pedidos_mesa[15] = {0};
+
     int total_pratos = 10;
 
     cout << "\n===== MENU =====" << endl;
@@ -41,6 +42,20 @@ int main()
 
         pedidos_mesa[opcao-1] += quantidade;
     }
+
+    float subtotal = 0;
+
+    for(int i = 0; i < total_pratos; i++)
+    {
+        subtotal += pedidos_mesa[i] * precos[i];
+    }
+
+    float iva = subtotal * 0.16;
+    float total = subtotal + iva;
+
+    cout << "\nSubtotal: " << subtotal << " MZN" << endl;
+    cout << "IVA (16%): " << iva << " MZN" << endl;
+    cout << "Total: " << total << " MZN" << endl;
 
     return 0;
 }
