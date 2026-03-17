@@ -9,16 +9,9 @@ int main()
     cout << "Programa iniciado com sucesso!" << endl;
 
     string pratos[15] = {
-        "Frango Grelhado",
-        "Arroz com Caril",
-        "Hamburguer",
-        "Pizza",
-        "Batatas Fritas",
-        "Sumo Natural",
-        "Refrigerante",
-        "Cafe",
-        "Bolo de Chocolate",
-        "Sandes de Frango"
+        "Frango Grelhado","Arroz com Caril","Hamburguer","Pizza",
+        "Batatas Fritas","Sumo Natural","Refrigerante","Cafe",
+        "Bolo de Chocolate","Sandes de Frango"
     };
 
     float precos[15] = {
@@ -26,15 +19,27 @@ int main()
     };
 
     int pedidos_mesa[15] = {0};
-
     int total_pratos = 10;
 
     cout << "\n===== MENU =====" << endl;
 
     for(int i = 0; i < total_pratos; i++)
+        cout << i+1 << " - " << pratos[i] << " : " << precos[i] << " MZN" << endl;
+
+    int opcao, quantidade;
+
+    while(true)
     {
-        cout << i + 1 << " - " << pratos[i] << " : "
-             << precos[i] << " MZN" << endl;
+        cout << "\nDigite numero do prato (0 para finalizar): ";
+        cin >> opcao;
+
+        if(opcao == 0)
+            break;
+
+        cout << "Quantidade: ";
+        cin >> quantidade;
+
+        pedidos_mesa[opcao-1] += quantidade;
     }
 
     return 0;
