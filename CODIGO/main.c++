@@ -22,23 +22,20 @@ int main()
     };
 
     float precos[15] = {
-        350,
-        250,
-        180,
-        400,
-        120,
-        90,
-        80,
-        50,
-        150,
-        160
+        350,250,180,400,120,90,80,50,150,160
     };
 
     int pedidos_mesa[15] = {0};
 
     int total_pratos = 10;
 
-    cout << "Menu carregado no sistema." << endl;
+    cout << "\n===== MENU =====" << endl;
+
+    for(int i = 0; i < total_pratos; i++)
+    {
+        cout << i + 1 << " - " << pratos[i] << " : "
+             << precos[i] << " MZN" << endl;
+    }
 
     return 0;
 }
