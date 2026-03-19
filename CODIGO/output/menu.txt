@@ -1,0 +1,10 @@
+Frango_Grelhado 350
+Arroz_com_Caril 250
+Hamburguer 180
+Pizza 400
+Batatas_Fritas 120
+Sumo_Natural 90
+Refrigerante 80
+Cafe 50
+Bolo_de_Chocolate 150
+Sandes_de_Frango 160
